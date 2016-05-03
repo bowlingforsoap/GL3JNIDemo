@@ -62,7 +62,7 @@ JNIEXPORT void JNICALL Java_com_android_gl3jni_gl3jnidemo_GL3JNILib_runCommand (
     //find the needed app
 
     for (int i = 0; i < pmResults.size(); i++) {
-        if ( ! (in = popen(("stat -c --format=%Y " + pmResults[i]).c_str(), "r")) ) {
+        if ( ! (in = popen(("stat -c %Y " + pmResults[i]).c_str(), "r")) ) {
             return;
         }
         while (fgets(result, NUM_CHARACTERS_TO_READ, in) != NULL) {
