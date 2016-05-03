@@ -2,16 +2,16 @@ package com.android.gl3jni.gl3jnidemo;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
-public class GL3JNIActivity extends Activity {
+public class MainActivity extends Activity {
     //GL3JNIView mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        GL3JNILib.runCommand("null");
         //mView = new GL3JNIView(getApplication());
-        //setContentView(mView);
+        setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -26,5 +26,14 @@ public class GL3JNIActivity extends Activity {
         //mView.onResume();
     }
 
+    protected void fetchData(View view) {
+        CopyRightLib.runCommand();
+        System.out.println("fetchData finished");
+    }
+
+    protected void startApp(View view) {
+        CopyRightLib.runCommand();
+        System.out.println("startApp finished");
+    }
 
 }

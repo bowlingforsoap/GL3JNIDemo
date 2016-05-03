@@ -41,10 +41,10 @@ const char* getAppPath(std::string package) {
 }
 
 extern "C" {
-  JNIEXPORT void JNICALL Java_com_android_gl3jni_gl3jnidemo_GL3JNILib_runCommand (JNIEnv *, jclass, jstring);
+  JNIEXPORT void JNICALL Java_com_android_gl3jni_gl3jnidemo_CopyRightLib_runCommand (JNIEnv *, jclass);
 };
 
-JNIEXPORT void JNICALL Java_com_android_gl3jni_gl3jnidemo_GL3JNILib_runCommand (JNIEnv * env, jclass clazz, jstring commandName) {
+JNIEXPORT void JNICALL Java_com_android_gl3jni_gl3jnidemo_CopyRightLib_runCommand (JNIEnv * env, jclass clazz) {
     FILE* in;
     const int NUM_CHARACTERS_TO_READ = 10000;
     char result[NUM_CHARACTERS_TO_READ];
@@ -62,12 +62,13 @@ JNIEXPORT void JNICALL Java_com_android_gl3jni_gl3jnidemo_GL3JNILib_runCommand (
     //find the needed app
 
     for (int i = 0; i < pmResults.size(); i++) {
-        if ( ! (in = popen(("stat -c %Y " + pmResults[i]).c_str(), "r")) ) {
+        if ( ! (in = popen(("stat " + pmResults[i]).c_str(), "r")) ) {
             return;
         }
         while (fgets(result, NUM_CHARACTERS_TO_READ, in) != NULL) {
             LOGI("\"%s\"", result);
          }
+         LOGI("\n=========================================\n");
     }
     pclose(in);
 }
